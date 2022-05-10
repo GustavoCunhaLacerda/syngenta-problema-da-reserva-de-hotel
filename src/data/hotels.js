@@ -33,8 +33,8 @@ const PRICES = {
   },
 };
 
-module.exports = [
-  hotelFactory(
+module.exports = {
+  Lakewood: hotelFactory(
     "Lakewood",
     CLASSIFICATIONS.LAKEWOOD,
     PRICES.WEEKDAYS.REGULAR.LAKEWOOD,
@@ -42,7 +42,7 @@ module.exports = [
     PRICES.WEEKEND.REGULAR.LAKEWOOD,
     PRICES.WEEKEND.REWARDS.LAKEWOOD
   ),
-  hotelFactory(
+  Bridgewood: hotelFactory(
     "Bridgewood",
     CLASSIFICATIONS.BRIDGEWOOD,
     PRICES.WEEKDAYS.REGULAR.BRIDGEWOOD,
@@ -50,7 +50,7 @@ module.exports = [
     PRICES.WEEKEND.REGULAR.BRIDGEWOOD,
     PRICES.WEEKEND.REWARDS.BRIDGEWOOD
   ),
-  hotelFactory(
+  Ridgewood: hotelFactory(
     "Ridgewood",
     CLASSIFICATIONS.RIDGEWOOD,
     PRICES.WEEKDAYS.REGULAR.RIDGEWOOD,
@@ -58,4 +58,4 @@ module.exports = [
     PRICES.WEEKEND.REGULAR.RIDGEWOOD,
     PRICES.WEEKEND.REWARDS.RIDGEWOOD
   ),
-];
+};

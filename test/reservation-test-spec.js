@@ -7,8 +7,8 @@ const getCheapestHotel = hotels.getCheapestHotel
 
 describe('test', function () {
   // Mixed days
-  it('should return Bridgewood regular mixed', function () {
-    expect(getCheapestHotel("Regular: 24Dec2009(tues), 25Dec2009(fri), 26Dec2009(sat)")).to.equal("Bridgewood");
+  it('should return Lakewood regular mixed', function () {
+    expect(getCheapestHotel("Regular: 24Dec2009(tues), 25Dec2009(fri), 26Dec2009(sat)")).to.equal("Lakewood");
   });
   it('should return Ridgewood rewards mixed', function () {
     expect(getCheapestHotel("Rewards: 24Dec2009(tues), 25Dec2009(fri), 26Dec2009(sat)")).to.equal("Ridgewood");
@@ -42,5 +42,10 @@ describe('test', function () {
   });
   it('should return Bridgewood rewards weekend one day', function () {
     expect(getCheapestHotel("Rewards: 26Dec2009(sat)")).to.equal("Ridgewood");
+  });
+
+  // Draw tests
+  it('should return Ridgewood draw', function () {
+    expect(getCheapestHotel("Rewards: 27Dec2009(sun), 28Dec2009(mon)")).to.equal("Ridgewood");
   });
 })

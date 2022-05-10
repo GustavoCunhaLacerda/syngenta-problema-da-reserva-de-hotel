@@ -1,45 +1,64 @@
-## Explicação da solução 
+## Explicação da solução
 
-Para resolver o problema, primeiro foi criado uma factory para armazenar objetos com os dados de cada hotel no formato
+Para resolver o problema, primeiro foi criado uma factory para armazenar objetos com os dados de cada hotel que foram amazenados em um
+objeto com chave sendo o nome do hotel
+
 ```js
-hotel = {
-  name,
-    classification,
-    prices: {
-      Regular: { weekdays: weekdaysRegular, weekend: weekendRegular },
-      Rewards: { weekdays: weekdaysRewards, weekend: weekendRewards },
-    },
-    getPrice(day, userType);
-}
+HOTELS = {
+  Lakewood: hotelFactory(LakewoodData),
+  Bridgewood: hotelFactory(BridgewoodData),
+  Ridgewood: hotelFactory(RidgewoodData),
+};
 ```
 
 Após tratar os dados é extraído os dias e o tipo de cliente utilizando manipulação de strings com funções nativas do Javascript.
 
-Depois é inicializado uma lista vazia e nela é armazenada todas as opções de preços encontrados para cada hotem em cada dia utilizando a funlçao getPrice presente no objeto dos hotéis e as datas utilizadas. Isso faz com que a solução possua complexidade igual a _n° de hotéis * número de datas_ que, nesse caso, será _O(3n) = O(n)_.
-```js
-// exemplo de all options com uma data fornecida (2Feb2009(mon))
-allOptions = [
-  { name: 'Lakewood', price: 110, classification: 3 },
-  { name: 'Bridgewood', price: 160, classification: 4 },
-  { name: 'Ridgewood', price: 220, classification: 5 },
-]
-```
-Com todos os valores de todos os hotéis por data armazenados a solução irá utilizar o método sort presente nativamente nas listas do Javascript para ordenar os hotéis por preço, caso os preços sejam diferentes, e por classificação se os preços forem iguais.
+Depois é inicializado um array (hotelsResults) contendo informações de preço total calculado em cada dia requerido, nome e cllassificação do hotel
 
-Assim, o primeiro valor da lista sempre terá o objeto da opção com o menor preço requerido pelo problema. Restando apenas retornar o nome do hotel
 ```js
-cheapestHotel = allOptions[0]
-return cheapestHotel.name
+// exemplo de hotelsResults inicializado com uma os hoteis fornecidos
+hotelsResults = [
+  { name: "Lakewood", totalPrice: 0, classification: 3 },
+  { name: "Bridgewood", totalPrice: 0, classification: 4 },
+  { name: "Ridgewood", totalPrice: 0, classification: 5 },
+];
+```
+
+É então utilizado as datas para adicionar ao valor total do hotel gerando o resultado final
+
+```js
+// exemplo de hotelsResults com os valores adicionados (input inicial = Rewards: 26Dec2009(sat), 27Dec2009(sun))
+hotelsResults = [
+  { name: "Lakewood", totalPrice: 160, classification: 3 },
+  { name: "Bridgewood", totalPrice: 100, classification: 4 },
+  { name: "Ridgewood", totalPrice: 80, classification: 5 },
+];
+```
+
+Por fim, o a lista de resultados é ordenada para priorizar o menor preço e caso necessário a melhor classificação.
+Assim, o hotem mais barato sempre será o primeiro da lista.
+
+```js
+// hotelsResults ordenado
+hotelsResults = [
+  { name: "Ridgewood", totalPrice: 80, classification: 5 },
+  { name: "Bridgewood", totalPrice: 100, classification: 4 },
+  { name: "Lakewood", totalPrice: 160, classification: 3 },
+];
+cheapestHotel = allOptions[0];
+return cheapestHotel.name;
 ```
 
 ## Testes disponíveis
 
 Os testes diponíveis são:
-- [X] Verificação de dados dos hotéis feitos pela factory (Nome, classificação e preços de cada um)
-- [X] Verificação do retorno de menor preço em caso de datas com apenas final de semana com os dois tipos de clientes
-- [X] Verificação do retorno de menor preço em caso de datas com apenas dias da semana com os dois tipos de clientes
-- [X] Verificação do retorno de menor preço em caso de datas com datas mistas com os dois tipos de clientes
-- [X] Verificação do retorno de menor preço em caso de apenas uma data com os dois tipos de clientes em final de semana e em dia da semana
+
+- [x] Verificação de dados dos hotéis feitos pela factory (Nome, classificação e preços de cada um)
+- [x] Verificação do retorno de menor preço em caso de datas com apenas final de semana com os dois tipos de clientes
+- [x] Verificação do retorno de menor preço em caso de datas com apenas dias da semana com os dois tipos de clientes
+- [x] Verificação do retorno de menor preço em caso de datas com datas mistas com os dois tipos de clientes
+- [x] Verificação do retorno de menor preço em caso de apenas uma data com os dois tipos de clientes em final de semana e em dia da semana
+- [x] Verificação de empate de preços
 
 ## Como utilizar
 
