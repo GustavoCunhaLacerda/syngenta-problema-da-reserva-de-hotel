@@ -45,7 +45,7 @@ hotelsResults = [
   { name: "Bridgewood", totalPrice: 100, classification: 4 },
   { name: "Lakewood", totalPrice: 160, classification: 3 },
 ];
-cheapestHotel = allOptions[0];
+cheapestHotel = hotelsResults[0];
 return cheapestHotel.name;
 ```
 
